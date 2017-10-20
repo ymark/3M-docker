@@ -17,8 +17,6 @@ sed -i s/255.255.255.255/$IP_ADDRESS/g $CATALINA_HOME/webapps/Maze/singlemapping
 sed -i s/255.255.255.255/$IP_ADDRESS/g $CATALINA_HOME/webapps/Maze/WEB-INF/config.properties
 sed -i s/255.255.255.255/$IP_ADDRESS/g $CATALINA_HOME/webapps/Maze/app/js/Controller.js
 
-more $CATALINA_HOME/webapps/3M/WEB-INF/web.xml
-
 fi
 # start eXist-db and Apache Tomcat
 exec supervisord -n

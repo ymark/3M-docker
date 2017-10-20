@@ -2,7 +2,7 @@ FROM openjdk:8-jre
 
 LABEL image.maintainer="Yannis Marketakis" \
 	image.organization="FORTH-ICS" \
-	image.version="1.0" \
+	image.version="1.1" \
 	image.lastupdate="2017-10-20" \
 	image.description="Mapping Memory Manager (3M) platorm"
 
@@ -27,7 +27,7 @@ RUN sed -i 's/8080/8081/g' /opt/exist/tools/jetty/etc/jetty.xml \
 	&& sed -i 's/8080/8081/g' /opt/exist/backup.properties \
 	&& sed -i 's/8080/8081/g' /opt/exist/index.html
 
-COPY Resources/3M /3M
+COPY Resources/3M /opt/3M
 
 ADD Resources/data.tar.gz /opt/exist/webapp/WEB-INF/
 
@@ -38,11 +38,10 @@ RUN cd /opt/ && \
 
 ADD Resources/WARs/*.tar.gz /opt/apache-tomcat-8.0.47/webapps/
 
-VOLUME ["/opt/exist/webapp/WEB-INF/data/","/opt/apache-tomcat-8.0.47/", "/3M/"]
+VOLUME ["/opt/exist/webapp/WEB-INF/data/","/opt/apache-tomcat-8.0.47/", "/opt/3M/"]
 
 ADD entrypoint.sh /entrypoint.sh
-ADD supervisord-tomcat.conf /etc/supervisor/conf.d/supervisord-tomcat.conf
-ADD supervisord-exist.conf /etc/supervisor/conf.d/supervisord-exist.conf
+ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 EXPOSE 8080 8081
 
