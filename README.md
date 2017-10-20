@@ -17,7 +17,7 @@ The image creates a running instance of Apache Tomcat, with the required 3M  web
 
 * IP_ADDRESS: allows the user defining the IP address (the external one) where docker is running. This will allow configuring 3M web applications with the proper external IP address they are available into. If the variable is not set when running the container, then the default IP address will be used (localhost)
 
-To start your container using port 8080 (for webapps) and 8081 (for eXistdb) using the external IP address 123.123.123.123: 
+To start your container using port 8080 (for 3M webapps) and 8081 (for eXistdb) using the external IP address 123.123.123.123: 
 
 ```
 docker run -d -p 8080:8080 -p 8081:8081 -e IP_ADDRESS=123.123.123.123 marketak/tomcat-3m:latest
