@@ -28,7 +28,7 @@ The image creates a running instance of Apache Tomcat, with the required 3M  web
 To start your container using port 8080 (for 3M webapps) and 8081 (for eXistdb) using the external IP address 123.123.123.123: 
 
 ```
-docker run -d -p 8080:8080 -p 8081:8081 -e IP_ADDRESS=123.123.123.123 marketak/tomcat-3m:latest
+docker run -d -p 8080:8080 -p 8081:8081 -e IP_ADDRESS=123.123.123.123 marketak/3m-docker:latest
 ```
 
 After running the container you can check if the instance is up and running by pasting the links below in your web browser
