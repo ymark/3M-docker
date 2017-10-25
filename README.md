@@ -38,6 +38,11 @@ http://123.123.123.123:8080/3M
 http://123.123.123.123:8081/exist
 ```
 
+For maintability reasons, 3M docker image exposes the following volumes which are mounted in the filesystem where the container is running (for more infromation about the actual location of these volumes in the target filesystem use docker inspect command)
+* data from eXist-DB
+* tomcat folder
+* 3M shared resources
+
 ### Maintainers
 
 Yannis Marketakis (marketak 'at' ics 'dot' forth 'dot' gr)
