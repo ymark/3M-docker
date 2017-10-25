@@ -43,6 +43,8 @@ VOLUME ["/opt/exist/webapp/WEB-INF/data/","/opt/apache-tomcat-8.0.47/", "/opt/3M
 ADD entrypoint.sh /entrypoint.sh
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
+RUN chmod +X /entrypoint.sh 
+
 EXPOSE 8080 8081
 
 ENTRYPOINT ["/entrypoint.sh"]
