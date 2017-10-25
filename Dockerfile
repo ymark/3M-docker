@@ -11,6 +11,7 @@ ENV PATH $CATALINA_HOME/bin:$PATH
 
 RUN apt-get update; apt-get -y install ant ant-optional supervisor; apt-get clean 
 
+# First we want to install eXist-DB and configure it to listen on port 8081
 RUN wget -q -O '/opt/exist.jar' 'https://bintray.com/artifact/download/existdb/releases/eXist-db-setup-2.2.jar' && \
     echo 'INSTALL_PATH=/opt/exist' > '/opt/options.txt' && \
     java -jar '/opt/exist.jar' -options '/opt/options.txt' && \
@@ -18,9 +19,7 @@ RUN wget -q -O '/opt/exist.jar' 'https://bintray.com/artifact/download/existdb/r
 
 ENV MAX_MEMORY 512
 RUN sed -i "s/Xmx%{MAX_MEMORY}m/Xmx\${MAX_MEMORY}m/g" /opt/exist/bin/functions.d/eXist-settings.sh
-# prefix java command with exec to force java being process 1 and receiving docker signals
- RUN sed -i 's/^\"${JAVA_RUN/exec \"${JAVA_RUN/'  /opt/exist/bin/startup.sh
-
+RUN sed -i 's/^\"${JAVA_RUN/exec \"${JAVA_RUN/'  /opt/exist/bin/startup.sh
 
 RUN sed -i 's/8080/8081/g' /opt/exist/tools/jetty/etc/jetty.xml \
 	&& sed -i 's/8080/8081/g' /opt/exist/client.properties \
@@ -31,6 +30,7 @@ COPY Resources/3M /opt/3M
 
 ADD Resources/data.tar.gz /opt/exist/webapp/WEB-INF/
 
+# Also install Apache tomcat with 3M webapps
 RUN cd /opt/ && \
 	wget -q -O 'tomcat.tar.gz' 'http://ftp.cc.uoc.gr/mirrors/apache/tomcat/tomcat-8/v8.0.47/bin/apache-tomcat-8.0.47.tar.gz' && \
 	tar -zxf tomcat.tar.gz && \
