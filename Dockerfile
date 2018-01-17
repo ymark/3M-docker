@@ -6,7 +6,7 @@ LABEL image.maintainer="Yannis Marketakis" \
 	image.lastupdate="2018-01-17" \
 	image.description="Mapping Memory Manager (3M) platorm"
 
-ENV CATALINA_HOME /opt/apache-tomcat-8.0.47
+ENV CATALINA_HOME /opt/apache-tomcat-8.0.48
 ENV PATH $CATALINA_HOME/bin:$PATH
 
 RUN apt-get update; apt-get -y install ant ant-optional supervisor; apt-get clean 
