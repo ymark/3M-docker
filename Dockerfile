@@ -2,8 +2,8 @@ FROM openjdk:8-jre
 
 LABEL image.maintainer="Yannis Marketakis" \
 	image.organization="FORTH-ICS" \
-	image.version="1.1" \
-	image.lastupdate="2017-10-20" \
+	image.version="1.2" \
+	image.lastupdate="2018-01-17" \
 	image.description="Mapping Memory Manager (3M) platorm"
 
 ENV CATALINA_HOME /opt/apache-tomcat-8.0.47
@@ -32,7 +32,7 @@ ADD Resources/data.tar.gz /opt/exist/webapp/WEB-INF/
 
 # Also install Apache tomcat with 3M webapps
 RUN cd /opt/ && \
-	wget -q -O 'tomcat.tar.gz' 'http://ftp.cc.uoc.gr/mirrors/apache/tomcat/tomcat-8/v8.0.47/bin/apache-tomcat-8.0.47.tar.gz' && \
+	wget -q -O 'tomcat.tar.gz' 'http://ftp.cc.uoc.gr/mirrors/apache/tomcat/tomcat-8/v8.0.48/bin/apache-tomcat-8.0.48-deployer.tar.gz' && \
 	tar -zxf tomcat.tar.gz && \
 	rm -rf tomcat.tar.gz
 
