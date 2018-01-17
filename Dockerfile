@@ -32,13 +32,13 @@ ADD Resources/data.tar.gz /opt/exist/webapp/WEB-INF/
 
 # Also install Apache tomcat with 3M webapps
 RUN cd /opt/ && \
-	wget -q -O 'tomcat.tar.gz' 'http://ftp.cc.uoc.gr/mirrors/apache/tomcat/tomcat-8/v8.0.48/bin/apache-tomcat-8.0.48-deployer.tar.gz' && \
+	wget -q -O 'tomcat.tar.gz' 'http://ftp.cc.uoc.gr/mirrors/apache/tomcat/tomcat-8/v8.0.48/bin/apache-tomcat-8.0.48.tar.gz' && \
 	tar -zxf tomcat.tar.gz && \
 	rm -rf tomcat.tar.gz
 
-ADD Resources/WARs/*.tar.gz /opt/apache-tomcat-8.0.47/webapps/
+ADD Resources/WARs/*.tar.gz /opt/apache-tomcat-8.0.48/webapps/
 
-VOLUME ["/opt/exist/webapp/WEB-INF/data/","/opt/apache-tomcat-8.0.47/", "/opt/3M/"]
+VOLUME ["/opt/exist/webapp/WEB-INF/data/","/opt/apache-tomcat-8.0.48/", "/opt/3M/"]
 
 ADD entrypoint.sh /entrypoint.sh
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
