@@ -2,11 +2,11 @@ FROM openjdk:8-jre
 
 LABEL image.maintainer="Yannis Marketakis" \
 	image.organization="FORTH-ICS" \
-	image.version="1.2" \
-	image.lastupdate="2018-01-17" \
+	image.version="1.3" \
+	image.lastupdate="2018-03-15" \
 	image.description="Mapping Memory Manager (3M) platorm"
 
-ENV CATALINA_HOME /opt/apache-tomcat-8.0.48
+ENV CATALINA_HOME /opt/apache-tomcat-8.0.50
 ENV PATH $CATALINA_HOME/bin:$PATH
 
 RUN apt-get update; apt-get -y install ant ant-optional supervisor; apt-get clean 
@@ -32,13 +32,13 @@ ADD Resources/data.tar.gz /opt/exist/webapp/WEB-INF/
 
 # Also install Apache tomcat with 3M webapps
 RUN cd /opt/ && \
-	wget -q -O 'tomcat.tar.gz' 'http://ftp.cc.uoc.gr/mirrors/apache/tomcat/tomcat-8/v8.0.48/bin/apache-tomcat-8.0.48.tar.gz' && \
+	wget -q -O 'tomcat.tar.gz' 'http://ftp.cc.uoc.gr/mirrors/apache/tomcat/tomcat-8/v8.0.50/bin/apache-tomcat-8.0.50.tar.gz' && \
 	tar -zxf tomcat.tar.gz && \
 	rm -rf tomcat.tar.gz
 
-ADD Resources/WARs/*.tar.gz /opt/apache-tomcat-8.0.48/webapps/
+ADD Resources/WARs/*.tar.gz /opt/apache-tomcat-8.0.50/webapps/
 
-VOLUME ["/opt/exist/webapp/WEB-INF/data/","/opt/apache-tomcat-8.0.48/", "/opt/3M/"]
+VOLUME ["/opt/exist/webapp/WEB-INF/data/","/opt/apache-tomcat-8.0.50/", "/opt/3M/"]
 
 ADD entrypoint.sh /entrypoint.sh
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
