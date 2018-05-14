@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSpy v2011 sp1 (http://www.altova.com) by End User (free.org) -->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.2">
 	<xs:include schemaLocation="comment.xsd"/>
 	<xs:include schemaLocation="info.xsd"/>
 	<xs:element name="x3ml">
@@ -13,7 +12,7 @@
 				<xs:element name="namespaces">
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element name="namespace" maxOccurs="unbounded">
+							<xs:element name="namespace" minOccurs="0" maxOccurs="unbounded">
 								<xs:complexType>
 									<xs:attribute name="prefix" use="required"/>
 									<xs:attribute name="uri" use="required"/>
@@ -35,7 +34,7 @@
 													<xs:element name="target_node" type="domain_target_nodeType"/>
 													<xs:element name="comments" type="commentsType" minOccurs="0"/>
 												</xs:sequence>
-												<xs:attribute name="repeated"/>
+												<xs:attribute name="namedgraph"/>
 											</xs:complexType>
 										</xs:element>
 										<xs:element name="link" minOccurs="0" maxOccurs="unbounded">
@@ -70,18 +69,24 @@
 														</xs:complexType>
 													</xs:element>
 												</xs:sequence>
+												<xs:attribute name="skip"/>
+												<xs:attribute name="namedgraph"/>
 											</xs:complexType>
 										</xs:element>
 									</xs:sequence>
+									<xs:attribute name="skip"/>
+									<xs:attribute name="namedgraph"/>
 								</xs:complexType>
 							</xs:element>
 						</xs:sequence>
+						<xs:attribute name="namedgraph"/>
 					</xs:complexType>
 				</xs:element>
 				<xs:element name="comments" type="commentsType" minOccurs="0"/>
 			</xs:sequence>
 			<xs:attribute name="version" use="required"/>
 			<xs:attribute name="source_type" use="required"/>
+			<xs:attribute name="editor"/>
 		</xs:complexType>
 	</xs:element>
 	<xs:complexType name="domain_target_nodeType">
@@ -116,6 +121,8 @@
 				<xs:element ref="additional" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
 			<xs:attribute name="variable"/>
+			<xs:attribute name="global_variable"/>
+			<xs:attribute name="variable_deprecated"/>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="relationship" type="xs:string"/>
@@ -174,13 +181,21 @@
 	<xs:element name="if" type="conditionsType"/>
 	<xs:element name="additional">
 		<xs:complexType>
-			<xs:sequence>
-				<xs:element ref="relationship"/>
-				<xs:element ref="entity"/>
+			<xs:sequence  maxOccurs="unbounded">
+				<xs:element ref="relationship" minOccurs="1" maxOccurs="1"/>
+				<xs:element ref="entity"  minOccurs="1" maxOccurs="1"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="source_node" type="xs:string"/>
+	<xs:element name="source_node">
+ 		<xs:complexType>
+ 			<xs:simpleContent>
+ 				<xs:extension base="xs:string">
+ 					<xs:attribute name="skip"/>
+ 				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
 	<xs:element name="target_node" type="range_target_nodeType"/>
 	<xs:element name="instance_info">
 		<xs:complexType>
