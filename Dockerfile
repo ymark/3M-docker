@@ -6,7 +6,7 @@ LABEL image.maintainer="Yannis Marketakis" \
 	image.lastupdate="2019-01-25" \
 	image.description="Mapping Memory Manager (3M) platform"
 
-ENV CATALINA_HOME /opt/apache-tomcat-8.5.35
+ENV CATALINA_HOME /opt/apache-tomcat-8.0.53
 ENV PATH $CATALINA_HOME/bin:$PATH
 
 RUN apt-get update; apt-get -y install ant ant-optional supervisor; apt-get clean 
@@ -32,7 +32,7 @@ ADD Resources/data.tar.gz /opt/exist/webapp/WEB-INF/
 
 # Also install Apache tomcat with 3M webapps
 RUN cd /opt/ && \
-	wget -q -O 'tomcat.tar.gz' 'http://ftp.cc.uoc.gr/mirrors/apache/tomcat/tomcat-8/v8.5.35/bin/apache-tomcat-8.5.35.tar.gz' && \
+	wget -q -O 'tomcat.tar.gz' 'http://archive.apache.org/dist/tomcat/tomcat-8/v8.0.53/bin/apache-tomcat-8.0.53.tar.gz' && \
 	tar -zxf tomcat.tar.gz && \
 	rm -rf tomcat.tar.gz
 
