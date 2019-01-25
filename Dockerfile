@@ -28,6 +28,8 @@ RUN sed -i 's/8080/8081/g' /opt/exist/tools/jetty/etc/jetty.xml \
 
 COPY Resources/3M /opt/3M
 
+RUN chmod -R 0777 /opt/3M
+
 ADD Resources/data.tar.gz /opt/exist/webapp/WEB-INF/
 
 # Also install Apache tomcat with 3M webapps
