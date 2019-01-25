@@ -2,11 +2,11 @@ FROM openjdk:8-jre
 
 LABEL image.maintainer="Yannis Marketakis" \
 	image.organization="FORTH-ICS" \
-	image.version="1.5" \
-	image.lastupdate="2018-10-19" \
+	image.version="1.5.1" \
+	image.lastupdate="2019-01-25" \
 	image.description="Mapping Memory Manager (3M) platform"
 
-ENV CATALINA_HOME /opt/apache-tomcat-8.0.53
+ENV CATALINA_HOME /opt/apache-tomcat-8.5.35
 ENV PATH $CATALINA_HOME/bin:$PATH
 
 RUN apt-get update; apt-get -y install ant ant-optional supervisor; apt-get clean 
