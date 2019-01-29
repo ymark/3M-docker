@@ -32,7 +32,7 @@ RUN chmod -R 0777 /opt/3M
 
 ADD Resources/data.tar.gz /opt/exist/webapp/WEB-INF/
 
-ADD Resources/SW/apache-tomcat-8.0.53.tar.gz /opt/apache-tomcat-8.0.53
+ADD Resources/SW/apache-tomcat-8.0.53.tar.gz /opt/
 
 ADD Resources/WARs/*.tar.gz /opt/apache-tomcat-8.0.53/webapps/
 
