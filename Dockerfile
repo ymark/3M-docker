@@ -3,7 +3,7 @@ FROM openjdk:8-jre
 LABEL image.maintainer="Yannis Marketakis" \
 	image.organization="FORTH-ICS" \
 	image.version="1.5.1" \
-	image.lastupdate="2019-01-25" \
+	image.lastupdate="2019-01-29" \
 	image.description="Mapping Memory Manager (3M) platform"
 
 ENV CATALINA_HOME /opt/apache-tomcat-8.0.53
@@ -32,11 +32,7 @@ RUN chmod -R 0777 /opt/3M
 
 ADD Resources/data.tar.gz /opt/exist/webapp/WEB-INF/
 
-# Also install Apache tomcat with 3M webapps
-RUN cd /opt/ && \
-	wget -q -O 'tomcat.tar.gz' 'http://archive.apache.org/dist/tomcat/tomcat-8/v8.0.53/bin/apache-tomcat-8.0.53.tar.gz' && \
-	tar -zxf tomcat.tar.gz && \
-	rm -rf tomcat.tar.gz
+ADD Resources/SW/apache-tomcat-8.0.53.tar.gz /opt/apache-tomcat-8.0.53
 
 ADD Resources/WARs/*.tar.gz /opt/apache-tomcat-8.0.53/webapps/
 
