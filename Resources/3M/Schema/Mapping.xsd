@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.4">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.5">
 	<xs:include schemaLocation="comment.xsd"/>
 	<xs:include schemaLocation="info.xsd"/>
 	<xs:element name="x3ml">
@@ -35,6 +35,7 @@
 													<xs:element name="comments" type="commentsType" minOccurs="0"/>
 												</xs:sequence>
 												<xs:attribute name="namedgraph"/>
+												<xs:attribute name="template"/>
 											</xs:complexType>
 										</xs:element>
 										<xs:element name="link" minOccurs="0" maxOccurs="unbounded">
@@ -71,6 +72,7 @@
 												</xs:sequence>
 												<xs:attribute name="skip"/>
 												<xs:attribute name="namedgraph"/>
+												<xs:attribute name="template"/>
 											</xs:complexType>
 										</xs:element>
 									</xs:sequence>
